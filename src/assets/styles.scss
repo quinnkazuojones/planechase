@@ -1,0 +1,502 @@
+$gold: #FEDB7C;
+$pointer: url('icons/pointer.png'),
+pointer !important;
+$typing: url('icons/typing.png'),
+text !important;
+$default: url('icons/cursor.png'),
+auto !important;
+
+@mixin shadow {
+    -webkit-box-shadow: 0px 0px 64px -9px rgba(254, 219, 124, 1);
+    -moz-box-shadow: 0px 0px 64px -9px rgba(254, 219, 124, 1);
+    box-shadow: 0px 0px 64px -9px rgba(254, 219, 124, 1);
+}
+
+@mixin bolditalic {
+    font-weight: bold;
+    font-style: italic;
+}
+
+a {
+    text-decoration: none;
+}
+
+* {
+    font-family: athenas;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: $gold;
+
+    &:focus {
+        outline: none;
+    }
+
+    cursor: $default;
+
+}
+
+input {
+    cursor: $typing;
+}
+
+button {
+    cursor: $pointer;
+}
+
+html {
+    background: black;
+}
+
+.init-view {
+    img {
+        width: 400px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+
+    form {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 200px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        bottom: 0;
+        flex-direction: column;
+
+        button {
+            background: $gold;
+            color: black;
+            width: 180px;
+            height: 40px;
+            font-size: 30px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        input {
+            background: none;
+            border: none;
+            border-bottom: 2px solid $gold;
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+            width: 200px;
+            padding-bottom: 3px;
+        }
+    }
+}
+
+.current {
+    width: 60%;
+    margin-left: 5%;
+    margin-top: 5%;
+    position: relative;
+
+    img {
+        width: 100%;
+        border: 1px solid $gold;
+        border-radius: 10px;
+    }
+
+    .content {
+        position: absolute;
+        bottom: -10px;
+        right: -20%;
+        background: black;
+        border: 1px solid $gold;
+        width: 50%;
+        padding: 15px;
+        border-radius: 5px;
+
+        div {
+            position: relative;
+        }
+
+        h1 {
+            position: absolute;
+            top: -56px;
+            right: -15px;
+            font-size: 30px;
+        }
+
+        h2 {
+            font-size: 20px;
+            position: absolute;
+            bottom: -43px;
+            left: -10px;
+        }
+    }
+}
+
+.grid-container {
+    max-width: 1250px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 220px);
+
+    .grid-card {
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .no-border {
+        border: none !important;
+        cursor: $default;
+    }
+
+    .selectable {
+        &:hover {
+            transform: scale(1.05)
+        }
+    }
+
+    .not-selectable {
+        opacity: .5;
+        pointer-events: none;
+    }
+
+    .grid-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+        width: 30%;
+        border-radius: 10px;
+        border: 1px solid $gold;
+        position: relative;
+        transition: box-shadow .1s ease-out;
+
+        &:hover {
+            @include shadow;
+        }
+
+        .img-container {
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .name {
+            background: black;
+            border: 1px solid $gold;
+            position: absolute;
+            font-weight: bold;
+            bottom: -10px;
+            right: -12px;
+            z-index: 100;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    }
+}
+
+.info-panel {
+    width: 200px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: calc(100% - 20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 20px;
+
+    .player-panel {
+        margin-bottom: 20px;
+        border: 1px solid $gold;
+        border-radius: 10px;
+        overflow: hidden;
+
+        .player-container {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 10px 0 20px 0;
+
+            .no-players {
+                text-align: center;
+            }
+        }
+
+        .player {
+            margin-bottom: 5px;
+            margin-top: 10px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            p {
+                text-align: center;
+            }
+
+            .name {
+                font-size: 30px;
+                margin-bottom: 5px;
+            }
+
+            .health-container {
+                transition: .2s ease-out;
+                border-radius: 5px;
+                overflow: hidden;
+                border: 1px solid $gold;
+                width: 80%;
+                margin: auto;
+                display: flex;
+                justify-content: space-between;
+
+                button {
+                    cursor: $pointer;
+                    color: black;
+                    background: $gold;
+                    border: none;
+                    width: 25%;
+                    font-size: 30px;
+                }
+
+                .health {
+                    font-size: 30px;
+                }
+
+                display: flex;
+            }
+        }
+
+        .header {
+            background: $gold;
+
+            h1 {
+                text-align: center;
+                font-weight: bold;
+                font-style: italic;
+                font-size: 50px;
+                color: black;
+            }
+        }
+    }
+
+    .dice-panel {
+        border: 1px solid $gold;
+        border-radius: 10px;
+        display: flex;
+        overflow: hidden;
+
+        div {
+            height: 100px;
+            width: 100%;
+        }
+
+        .dice-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 70%;
+                transition: .1s ease-out;
+                cursor: $pointer;
+
+            }
+
+            &:hover {
+                cursor: $pointer;
+
+                img {
+                    width: 75%;
+                }
+            }
+        }
+
+        .results-container {
+            background: $gold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .status-view {
+        align-self: flex-end;
+
+        img {
+            cursor: $pointer;
+        }
+
+        .status {
+            font-size: 30px;
+            font-style: italic;
+        }
+
+        img {
+            width: 100px;
+        }
+    }
+
+}
+
+#grid {
+    transition: 1s ease-out;
+}
+
+.help-icon-container {
+    cursor: $pointer;
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+
+    img {
+        width: 20px;
+    }
+}
+
+.help-panel-container {
+    padding-top: 1%;
+    padding-bottom: 1.5%;
+    margin-left: 20px;
+    margin-top: 20px;
+    width: calc(100% - 240px);
+    height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    .help-panel {
+        width: 90%;
+        height: 95%;
+        position: relative;
+
+        h1 {
+            margin-bottom: 5px;
+            position: absolute;
+        }
+
+        .switch {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 10px;
+            margin-bottom: 5px;
+
+            h2 {
+                margin: 0 10px;
+            }
+
+            .faded {
+                opacity: 50%;
+            }
+        }
+
+        .bordered {
+            overflow: hidden;
+            border-radius: 10px;
+            border: 1px solid $gold;
+            height: 100%;
+            width: 100%;
+            padding: 20px;
+
+
+            div::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            div::-webkit-scrollbar-track {
+                background: none;
+            }
+
+            div::-webkit-scrollbar-thumb {
+                background: $gold;
+                border-radius: 50px;
+            }
+
+            .content {
+                height: 100%;
+                overflow: auto;
+                overflow-x: hidden;
+            }
+
+            .overview-container {
+                position: absolute;
+                padding-right: 20px;
+
+                h2 {
+                    text-align: left;
+                    font-style: italic;
+                    margin-bottom: 10px;
+                    padding-left: 1%;
+                    font-size: 28px;
+                }
+
+                p {
+                    padding-left: 5%;
+                    margin-bottom: 30px;
+                    font-size: 24px;
+                }
+            }
+
+            .creator-container {
+                position: absolute;
+            }
+
+            .controls-container {
+                .centered {
+                    display: flex;
+                    justify-content: center;
+                    height: 100%;
+                    width: 100%;
+                    align-items: center;
+                }
+
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                height: 650px;
+                width: 100%;
+                align-items: center;
+
+                h2 {
+                    margin-bottom: 30px;
+                    font-style: italic;
+                }
+
+                .left {
+                    text-align: right;
+                    width: 48%;
+                }
+
+                .right {
+                    width: 48%
+                }
+
+                .line {
+                    width: 4%;
+                    max-height: 300px;
+                    height: 300px;
+
+                    .line-inner {
+
+                        margin: auto;
+                        background: $gold;
+                        width: 2px;
+                        height: 100%;
+                    }
+                }
+            }
+
+        }
+
+    }
+}
+
+.disabled{opacity: .5;};
+
+.take-action{
+    @include shadow;
+}
